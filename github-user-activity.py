@@ -22,4 +22,13 @@ if not isinstance(events, list):
     exit(1)
 
 for event in events:
-    print(f"Type: {event['type']}, Repo: {event['repo']['name']}, Created at: {event['created_at']}")
+    if event['type'] == 'PushEvent':
+        print(f"commit in the repo  {event['repo']['name']},at {event['created_at']}")
+    elif event['type'] == 'PullRequestEvent':
+        print(f"pull request in the repo {event['repo']['name']}, at {event['created_at']}")
+    elif event['type'] == 'IssuesEvent':
+        print(f"issue in the repo {event['repo']['name']}, at {event['created_at']}")
+    elif event['type'] == 'ForkEvent':
+        print(f"forked the repo {event['repo']['name']}, at {event['created_at']}")
+    elif event['type'] == 'IssueCommentEvent':
+        print(f"commented on an issue in the repo {event['repo']['name']}, at {event['created_at']}")
